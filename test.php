@@ -7,4 +7,4 @@ require __DIR__ . '/vendor/autoload.php';
 
 $client = new Acelle\Client('http://acelle.local/api/v1', 'aIpfXqiFMnsvO0e9nlpACZ4x0euvngGTKADSnjKy1760uY5vZ9strUX0f9RW');
 
-$campaigns = $client->campaign()->all();
+var_dump($client->list()->all());

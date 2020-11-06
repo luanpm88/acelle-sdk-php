@@ -12,8 +12,16 @@ class Base {
         $this->client = $client;
     }
 
+    public function all($params = []) {
+		return $this->makeRequest('', 'GET', $params);
+	}
+
     public function create($params) {
 		return $this->makeRequest('', 'POST', $params);
+    }
+    
+    public function find($uid) {
+		return $this->makeRequest($uid, 'GET');
 	}
 
 	public function makeRequest($action = '', $method = 'POST', $params = [], $headers = []) {
@@ -37,9 +45,5 @@ class Base {
         }
         
         return json_decode($response->getBody(), true);
-	}
-
-	public function all($params = []) {
-		return $this->makeRequest('', 'GET', $params);
 	}
 }

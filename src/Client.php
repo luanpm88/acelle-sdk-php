@@ -3,6 +3,7 @@
 namespace Acelle;
 
 use Acelle\Resource\Campaign;
+use Acelle\Resource\MailList;
 
 class Client {
     private $token;
@@ -26,5 +27,9 @@ class Client {
 
     public function campaign() {
         return new Campaign([], $this);
+    }
+
+    public function list() {
+        return new MailList([], $this);
     }
 }
