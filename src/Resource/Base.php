@@ -22,6 +22,10 @@ class Base {
     
     public function find($uid) {
 		return $this->makeRequest($uid, 'GET');
+    }
+    
+    public function update($uid, $params) {
+		return $this->makeRequest($uid, 'PATCH', $params);
 	}
 
 	public function makeRequest($action = '', $method = 'POST', $params = [], $headers = []) {
@@ -29,7 +33,7 @@ class Base {
         if ($action) {
             $uri = $uri . '/' . $action;
         }
-
+        
         $client = new \GuzzleHttp\Client(['http_errors' => true]);
         $headers = array_merge([
             'Content-Type' => 'application/json',
