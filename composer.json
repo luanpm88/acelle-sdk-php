@@ -1,4 +1,6 @@
 {
+    "name": "acelle/sdk-php",
+    "description": "PHP API to connect to Acelle application",
     "require": {
         "monolog/monolog": "1.0.*",
         "guzzlehttp/guzzle": "^7.2"
