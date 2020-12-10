@@ -7,6 +7,11 @@ use Acelle\Resource\Base;
 class Subscription extends Base {
     public function getSubject()
     {
-        return 'subscription';
+        return 'subscriptions';
+    }
+
+    public function activate($uid)
+    {
+        return $this->makeRequest($uid . '/activate', 'POST');
     }
 }

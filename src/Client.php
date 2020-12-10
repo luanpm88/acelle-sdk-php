@@ -2,6 +2,7 @@
 
 namespace Acelle;
 
+use Acelle\Resource\Base;
 use Acelle\Resource\Campaign;
 use Acelle\Resource\MailList;
 use Acelle\Resource\Subscriber;
@@ -9,6 +10,8 @@ use Acelle\Resource\Plan;
 use Acelle\Resource\SendingServer;
 use Acelle\Resource\Customer;
 use Acelle\Resource\Subscription;
+use Acelle\Resource\Notification;
+use Acelle\Resource\File;
 
 class Client {
     private $token;
@@ -56,5 +59,22 @@ class Client {
 
     public function subscription() {
         return new Subscription([], $this);
+    }
+
+    public function sending_server() {
+        return new SendingServer([], $this);
+    }
+
+    public function notification() {
+        return new Notification([], $this);
+    }
+
+    public function file() {
+        return new File([], $this);
+    }
+
+    public function loginToken() {
+        $base = new Base([], $this);
+        return $base->makeRequest('login-token', 'POST');
     }
 }

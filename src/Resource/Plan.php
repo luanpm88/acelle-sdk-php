@@ -7,6 +7,6 @@ use Acelle\Resource\Base;
 class Plan extends Base {
     public function getSubject()
     {
-        return 'plan';
+        return 'plans';
     }
 }

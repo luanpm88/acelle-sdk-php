@@ -5,7 +5,9 @@ namespace Acelle\Resource;
 class Base {
     private $client;
     
-    public function getSubject() {}
+    public function getSubject() {
+        return false;
+    }
 
     public function __construct($attributes = [], $client)
     {
@@ -26,10 +28,18 @@ class Base {
     
     public function update($uid, $params) {
 		return $this->makeRequest($uid, 'PATCH', $params);
+    }
+    
+    public function delete($uid) {
+		return $this->makeRequest($uid, 'DELETE');
 	}
 
 	public function makeRequest($action = '', $method = 'POST', $params = [], $headers = []) {
-        $uri = $this->client->getUri() . '/' . $this->getSubject() . 's';
+        $uri = $this->client->getUri();
+        
+        if ($this->getSubject()) {
+            $uri = $uri . '/' . $this->getSubject();
+        }
         if ($action) {
             $uri = $uri . '/' . $action;
         }
@@ -45,7 +55,7 @@ class Base {
             ]);
         } catch (\Exception $e) {
             echo 'Uh oh! ' . $e->getMessage();
-            exit();
+            return;
         }
         
         return json_decode($response->getBody(), true);
