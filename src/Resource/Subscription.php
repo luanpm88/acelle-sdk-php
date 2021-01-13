@@ -14,4 +14,14 @@ class Subscription extends Base {
     {
         return $this->makeRequest($uid . '/activate', 'POST');
     }
+
+    public function addTag($uid, $tag)
+    {
+        if (is_array($tag)) {
+            $tag = implode(',', $tag);
+        }
+        return $this->makeRequest($uid . '/activate', 'POST', [
+            'tag' => $tag
+        ]);
+    }
 }
