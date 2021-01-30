@@ -9,4 +9,7 @@ class Campaign extends Base {
     {
         return 'campaigns';
     }
+    public function pause($uid) {
+        return $this->makeRequest($uid . '/pause', 'POST');
+    }
 }
