@@ -44,7 +44,7 @@ class Base {
             $uri = $uri . '/' . $action;
         }
         
-        $client = new \GuzzleHttp\Client(['http_errors' => true]);
+        $client = new \GuzzleHttp\Client(['http_errors' => true, 'verify' => false]);
         $headers = array_merge([
             'Content-Type' => 'application/json',
         ], $headers);
@@ -53,8 +53,19 @@ class Base {
                 'headers' => $headers,
                 'body' => json_encode(array_merge(['api_token' => $this->client->getToken()], $params)),
             ]);
-        } catch (\Exception $e) {
-            echo 'Uh oh! ' . $e->getMessage();
+        } catch (\GuzzleHttp\Exception\RequestException $e) {
+            /**
+             * Here we actually catch the instance of GuzzleHttp\Psr7\Response
+             * (find it in ./vendor/guzzlehttp/psr7/src/Response.php) with all
+             * its own and its 'Message' trait's methods. See more explanations below.
+             *
+             * So you can have: HTTP status code, message, headers and body.
+             * Just check the exception object has the response before.
+             */
+            if ($e->hasResponse()) {
+                $response = $e->getResponse();
+                var_dump((string) $response->getBody()); // Body, normally it is JSON;
+            }
             return;
         }
         
