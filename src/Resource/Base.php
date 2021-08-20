@@ -66,7 +66,7 @@ class Base {
                 $response = $e->getResponse();
                 var_dump((string) $response->getBody()); // Body, normally it is JSON;
             }
-            return;
+            // return;
         }
         
         return json_decode($response->getBody(), true);

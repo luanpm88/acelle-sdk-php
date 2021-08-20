@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestCase;
 final class SdkTest extends TestCase
 {
     public function getClient() {
-        return new \Acelle\Client('https://api-test.com/api/v1', 'jNSlIRWN7IRTKGzH2PaHiNfQO00AOmi4N0o3nYjxCGHpgzRBTECRuBSdcPc6');
+        return new \Acelle\Client('https://api-test.com/api/v1', '60fWXciEADqEFBTrtvM3bYQ43iAf5qt5WIp9BvflrGrUcKfYXq8GtoDKpux9');
     }
 
     public function testLoginToken() {
@@ -13,7 +13,7 @@ final class SdkTest extends TestCase
     }
 
     public function testListCreate() {
-        $list = $this->getClient()->list()->create([
+        $result = $this->getClient()->list()->create([
             'name' => 'List+1',
             'from_email' => 'admin@abccorp.org',
             'from_name' => 'ABC+Corp.',
@@ -30,13 +30,12 @@ final class SdkTest extends TestCase
                 'email' => 'info@abccorp.org',
                 'url' => 'http://www.abccorp.org',                
             ],
-            'subscribe_confirmation' => '1',
-            'send_welcome_email' => '1',
-            'unsubscribe_notification' => '1',
+            'subscribe_confirmation' => '0',
+            'send_welcome_email' => '0',
+            'unsubscribe_notification' => '0',
         ]);
 
-        $this->assertArrayHasKey('status', $list);
-        return $list;
+        $this->assertEquals('1', $result['status']);
     }
 
     public function testListAll() {
@@ -111,29 +110,33 @@ final class SdkTest extends TestCase
         ]));
     }
 
+    public function testSubscriberSubscribe() {
+        $subscriber = $this->pickASubscriber();
+        $this->assertIsArray($this->getClient()->subscriber()->subscribe($subscriber['uid']));
+    }
+
     public function testSubscriberUnsubscribe() {
         $subscriber = $this->pickASubscriber();
-        var_dump($this->getClient()->subscriber()->unsubscribe($subscriber['uid']));die();
         $this->assertIsArray($this->getClient()->subscriber()->unsubscribe($subscriber['uid']));
     }
 
-    // public function testSubscriberSubscribe() {
-    //     $subscriber = $this->pickASubscriber();
-    //     $this->assertIsArray($this->getClient()->subscriber()->subscribe($subscriber['uid']));
-    // }
+    public function testSubscriberDelete() {
+        $subscriber = $this->pickASubscriber();
+        $this->assertIsArray($this->getClient()->subscriber()->delete($subscriber['uid']));
+    }
 
-    // public function testSubscriberDelete() {
-    //     $subscriber = $this->pickASubscriber();
-    //     $this->assertIsArray($this->getClient()->subscriber()->delete($subscriber['uid']));
-    // }
+    public function testCampaignAll() {
+        $this->assertIsArray($this->getClient()->campaign()->all());
+    }
 
-    // public function testCampaignAll() {
-    //     $this->assertIsArray($this->getClient()->campaign()->all());
-    // }
+    public function pickACampaign() {
+        return $this->getClient()->campaign()->all()[0];
+    }
     
-    // public function testCampaignFind() {
-    //     $this->assertIsArray($this->getClient()->campaign()->find('5fb48ff221b27'));
-    // }
+    public function testCampaignFind() {
+        $campaign = $this->pickACampaign();
+        $this->assertIsArray($this->getClient()->campaign()->find($campaign['uid']));
+    }
 
     // public function testNotificationAll() {
     //     $this->assertIsArray($this->getClient()->notification()->read([
