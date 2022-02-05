@@ -2,7 +2,7 @@
     "name": "acelle/sdk-php",
     "description": "PHP API SDK Client for Acelle Mail",
     "require": {
-        "monolog/monolog": "1.0.*",
+        "monolog/monolog": "^2.0",
         "guzzlehttp/guzzle": "^7.2"
     },
     "autoload": {
