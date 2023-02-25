@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestCase;
 final class SdkTest extends TestCase
 {
     public function getClient() {
-        return new \Acelle\Client('https://api-test.com/api/v1', '60fWXciEADqEFBTrtvM3bYQ43iAf5qt5WIp9BvflrGrUcKfYXq8GtoDKpux9');
+        return new \Acelle\Client('http://acelle.com/api/v1', 'zUS22T1JMzgb7iKZi4J06v0NmHFUzenVvyyiUymDG3AYeYpB0SvYhzzZjuhQ');
     }
 
     public function testLoginToken() {

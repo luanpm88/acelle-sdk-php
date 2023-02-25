@@ -9,7 +9,7 @@ class Base {
         return false;
     }
 
-    public function __construct($attributes = [], $client)
+    public function __construct($client, $attributes = [])
     {
         $this->client = $client;
     }

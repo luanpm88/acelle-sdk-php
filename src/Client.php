@@ -34,47 +34,47 @@ class Client {
     }
 
     public function campaign() {
-        return new Campaign([], $this);
+        return new Campaign($this, []);
     }
 
     public function list() {
-        return new MailList([], $this);
+        return new MailList($this, []);
     }
 
     public function subscriber() {
-        return new Subscriber([], $this);
+        return new Subscriber($this, []);
     }
 
     public function plan() {
-        return new Plan([], $this);
+        return new Plan($this, []);
     }
 
     public function sendingServer() {
-        return new SendingServer([], $this);
+        return new SendingServer($this, []);
     }
 
     public function customer() {
-        return new Customer([], $this);
+        return new Customer($this, []);
     }
 
     public function subscription() {
-        return new Subscription([], $this);
+        return new Subscription($this, []);
     }
 
     public function sending_server() {
-        return new SendingServer([], $this);
+        return new SendingServer($this, []);
     }
 
     public function notification() {
-        return new Notification([], $this);
+        return new Notification($this, []);
     }
 
     public function file() {
-        return new File([], $this);
+        return new File($this, []);
     }
 
     public function loginToken() {
-        $base = new Base([], $this);
+        $base = new Base($this, []);
         return $base->makeRequest('login-token', 'POST');
     }
 }
