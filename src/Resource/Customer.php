@@ -24,4 +24,9 @@ class Customer extends Base {
     {
         return $this->makeRequest($uid . '/assign-plan/' . $plan_uid, 'POST');
     }
+
+    public function changePlan($uid, $plan_uid)
+    {
+        return $this->makeRequest($uid . '/change-plan/' . $plan_uid, 'POST');
+    }
 }
