@@ -23,4 +23,9 @@ class MailList extends Base {
     {
         return $this->makeRequest($uid . '/subscribers/' . $subscriber_uid . '/unsubscribe', 'PATCH');
     }
+
+    public function unsubscribeEmail($uid, $email)
+    {
+        return $this->makeRequest($uid . '/subscribers/email/' . $email . '/unsubscribe', 'PATCH');
+    }
 }
