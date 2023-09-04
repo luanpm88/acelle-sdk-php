@@ -24,4 +24,9 @@ class Subscriber extends Base {
     {
         return $this->makeRequest($uid . '/unsubscribe', 'PATCH');
     }
+
+    public function unsubscribeEmail($email)
+    {
+        return $this->makeRequest('email/' . $email . '/unsubscribe', 'PATCH');
+    }
 }
