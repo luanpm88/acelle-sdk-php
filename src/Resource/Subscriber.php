@@ -29,4 +29,14 @@ class Subscriber extends Base {
     {
         return $this->makeRequest('email/' . $email . '/unsubscribe', 'PATCH');
     }
+
+    public function addTag($uid, $tags)
+    {
+        return $this->makeRequest($uid . '/add-tag', 'POST', $params);
+    }
+
+    public function removeTag($uid, $tags)
+    {
+        return $this->makeRequest($uid . '/remove-tag', 'POST', $params);
+    }
 }
