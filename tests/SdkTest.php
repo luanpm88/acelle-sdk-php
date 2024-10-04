@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestCase;
 final class SdkTest extends TestCase
 {
     public function getClient() {
-        return new \Acelle\Client('http://acelle.com/api/v1', 'zUS22T1JMzgb7iKZi4J06v0NmHFUzenVvyyiUymDG3AYeYpB0SvYhzzZjuhQ');
+        return new \Acelle\Client('http://acelle.com/api/v1', 'jCqKJD20rQLmXKtGKpqV0r1Q5Do9bVvr99RPH3ivGRdRfHnnuoCI2qHABreh');
     }
 
     public function testLoginToken() {
@@ -231,5 +231,9 @@ final class SdkTest extends TestCase
         $customer = $this->pickACustomer();
         $plan = $this->pickAPlan();
         $this->assertIsArray($this->getClient()->customer()->assignPlan($customer['uid'], $plan['uid']));
+    }
+
+    public function testFindCustomerByEmail() {
+        $this->assertIsArray($this->getClient()->customer()->findByEmail('luanpm88@gmail.com'));
     }
 }

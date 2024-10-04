@@ -29,4 +29,9 @@ class Customer extends Base {
     {
         return $this->makeRequest($uid . '/change-plan/' . $plan_uid, 'POST');
     }
+
+    public function findByEmail($email)
+    {
+        return $this->makeRequest('by-email/' . $email, 'GET');
+    }
 }
