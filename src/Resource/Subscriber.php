@@ -15,14 +15,14 @@ class Subscriber extends Base {
         return $this->makeRequest('email/' . $email, 'GET');
     }
 
-    public function subscribe($uid)
+    public function subscribe($id)
     {
-        return $this->makeRequest($uid . '/subscribe', 'PATCH');
+        return $this->makeRequest($id . '/subscribe', 'PATCH');
     }
 
-    public function unsubscribe($uid)
+    public function unsubscribe($id)
     {
-        return $this->makeRequest($uid . '/unsubscribe', 'PATCH');
+        return $this->makeRequest($id . '/unsubscribe', 'PATCH');
     }
 
     public function unsubscribeEmail($email)
@@ -30,13 +30,13 @@ class Subscriber extends Base {
         return $this->makeRequest('email/' . $email . '/unsubscribe', 'PATCH');
     }
 
-    public function addTag($uid, $tags)
+    public function addTag($id, $params)
     {
-        return $this->makeRequest($uid . '/add-tag', 'POST', $params);
+        return $this->makeRequest($id . '/add-tag', 'POST', $params);
     }
 
-    public function removeTag($uid, $tags)
+    public function removeTag($id, $params)
     {
-        return $this->makeRequest($uid . '/remove-tag', 'POST', $params);
+        return $this->makeRequest($id . '/remove-tag', 'POST', $params);
     }
 }

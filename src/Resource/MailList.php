@@ -14,14 +14,14 @@ class MailList extends Base {
         return $this->makeRequest($uid . '/' . 'add-field', 'POST', $params);
     }
 
-    public function subscribe($uid, $subscriber_uid)
+    public function subscribe($uid, $subscriber_id)
     {
-        return $this->makeRequest($uid . '/subscribers/' . $subscriber_uid . '/subscribe', 'PATCH');
+        return $this->makeRequest($uid . '/subscribers/' . $subscriber_id . '/subscribe', 'PATCH');
     }
 
-    public function unsubscribe($uid, $subscriber_uid)
+    public function unsubscribe($uid, $subscriber_id)
     {
-        return $this->makeRequest($uid . '/subscribers/' . $subscriber_uid . '/unsubscribe', 'PATCH');
+        return $this->makeRequest($uid . '/subscribers/' . $subscriber_id . '/unsubscribe', 'PATCH');
     }
 
     public function unsubscribeEmail($uid, $email)
