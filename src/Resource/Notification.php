@@ -11,6 +11,6 @@ class Notification extends Base {
     }
 
     public function read() {
-        return $this->makeRequest('', 'POST');
+        return $this->makeRequest('bounce', 'POST');
     }
 }
